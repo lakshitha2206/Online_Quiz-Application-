@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="/style.css">
+ 
+    <title>Trivia App</title>
+    <script>
+        function ShowAnswer(answerId){
+            const answerElement = document.getElementById(answerId);
+            answerElement.style.display = 'block'
+        }
+        
+    </script>
+    <% try {
+        questions.forEach(q => {%>
+            <p><%=q.question %></p>
+         <%});
+
+    }catch (err){ %>
+        <p>Error displaying questions</p>
+        <%} %>
+</head>
+<body>
+    <div class="container">
+   <h1>Trivia App</h1>
+    <ol>
+      <% questions. forEach((questions, index) => { %>
+        <li>
+            <p><%= questions.questions %></p>
+            <ul>
+                <% questions.incorrect_answer.concat(question.correct_answer).forEach(answer => { %>
+                    <li><%= answer %></li>
+                <% }) %>
+            </ul>
+        <p id="answer-<%= index %>" style="display: none">
+            Correct Answer : <%= questions.correct_answer %>
+        </p>
+        <button onClick="ShowAnswer('answer-<%= index %>')">
+            show the answer
+        </button>
+
+       </li>
+      <% }) %>
+   </ol>
+   <a href="/">Start Over the quiz</a>
+   </div>
+    
+</body>
+</html>
